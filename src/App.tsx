@@ -4,6 +4,7 @@ import { useMainContract } from "./hooks/useMainContract";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano } from "ton-core";
 import WebApp from "@twa-dev/sdk";
+import { useEffect, useState } from "react";
 function App() {
   const {
     contract_address,
@@ -15,11 +16,17 @@ function App() {
   } = useMainContract();
 
   const { connected } = useTonConnect();
+  const [referralId, setReferralId] = useState<string | null>();
 
   const showAlert = () => {
     WebApp.showAlert("HI, there");
   };
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const user = urlParams.get("refId");
+    setReferralId(user);
+  }, []);
   return (
     <div className="">
       <div>
@@ -29,6 +36,7 @@ function App() {
       <div>
         <div className="Card">
           <b>{WebApp.platform}</b>
+          {referralId && <b>ReferralId: {referralId}</b>}
           <b>Our contract Address</b>
           <div className="Hint">{contract_address?.slice(0, 30) + "..."}</div>
           <b>Our contract balance</b>
