@@ -36,7 +36,9 @@ function App() {
       <div>
         <div className="Card">
           <b>{WebApp.platform}</b>
+          <br />
           {referralId && <b>ReferralId: {referralId}</b>}
+          <br />
           <b>Our contract Address</b>
           <div className="Hint">{contract_address?.slice(0, 30) + "..."}</div>
           <b>Our contract balance</b>
