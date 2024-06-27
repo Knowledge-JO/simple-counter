@@ -24,6 +24,12 @@ function App() {
   };
 
   useEffect(() => {
+    WebApp.showAlert(
+      `${WebApp.initDataUnsafe.user?.id}, ${WebApp.initDataUnsafe.user?.first_name}`
+    );
+  }, []);
+
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const user = urlParams.get("refId");
     setReferralId(user);
