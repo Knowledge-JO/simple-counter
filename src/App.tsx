@@ -4,6 +4,7 @@ import { useMainContract } from "./hooks/useMainContract";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { fromNano } from "ton-core";
 import WebApp from "@twa-dev/sdk";
+
 import { useEffect, useState } from "react";
 function App() {
   const {
@@ -19,7 +20,7 @@ function App() {
   const [referralId, setReferralId] = useState<string | null>();
 
   const showAlert = () => {
-    WebApp.showAlert("HI, there");
+    WebApp.showAlert(String(WebApp.initDataUnsafe.user?.id));
   };
 
   useEffect(() => {
